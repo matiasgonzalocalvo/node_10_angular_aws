@@ -10,6 +10,11 @@ RUN useradd --system --shell /bin/bash --create-home --home /home/${USER} ${USER
 RUN apt update && apt install -y curl nodejs software-properties-common python-dev python-pip
 RUN npm install -y npm@latest -g && npm install -g @angular/cli
 RUN pip install awscli
+#RUN apt-cache search terraform
+RUN wget --quiet https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip \
+  && unzip terraform_0.11.3_linux_amd64.zip \
+  && mv terraform /usr/bin \
+  && rm terraform_0.11.3_linux_amd64.zip
 #Upgrade pip
 ENV HOME /home/${USER}
 WORKDIR ${HOME}
